@@ -12,7 +12,7 @@ import json
 
 # Create your views here.
 
-
+# Início Exemplos
 @api_view(['GET'])
 def get_users(request):
     
@@ -38,5 +38,33 @@ def get_by_nick(request, nick):
     if request.method == 'GET':
         serializer = UserSerializer(user)
         return Response(serializer.data)
-    
-    
+
+# Fim Exemplos
+
+
+# CRUD REAL
+@api_view(['GET', 'POST', 'PUT', 'DELTE'])
+def user_manager(request):
+     
+     if request.method == 'GET':
+         
+        try:
+            if request.GET['user']:
+                 
+                # Recuperando o valor de nickname do user
+                user_nickname = request.GET['user']
+                
+                # verificando se existe no db
+                try:
+                    user = User.objects.get(pk=user_nickname)    
+                except:
+                    return Response(status=status.HTTP_404_NOT_FOUND)                                
+                 
+                serializer = UserSerializer(user)
+                return Response(serializer.data)
+        
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        except: 
+            return Response(status=status.HTTP_400_BAD_REQUEST)

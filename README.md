@@ -20,3 +20,11 @@
 
 # Para rodar o servidor
 # python manage.py runserver
+
+# LINKS DE ACESSO:
+
+# Get all users
+# http://127.0.0.1:8000/api/
+
+# Get user with filter
+# http://127.0.0.1:8000/api/data/?user=ytq18Q

@@ -28,3 +28,10 @@
 
 # Get user with filter
 # http://127.0.0.1:8000/api/data/?user=ytq18Q
+
+# Create user
+# http://127.0.0.1:8000/api/
+
+# Update user
+# http://127.0.0.1:8000/api/
+

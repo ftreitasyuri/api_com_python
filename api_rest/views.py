@@ -43,7 +43,7 @@ def get_by_nick(request, nick):
 
 
 # CRUD REAL
-@api_view(['GET', 'POST', 'PUT', 'DELTE'])
+@api_view(['GET', 'POST', 'PUT', 'DELeTE'])
 def user_manager(request):
      
     if request.method == 'GET':
@@ -69,6 +69,7 @@ def user_manager(request):
         except: 
             return Response(status=status.HTTP_400_BAD_REQUEST)
     
+    # CRIANDO USUÁRIO
     if request.method == 'POST':
         
         new_user = request.data
@@ -79,6 +80,26 @@ def user_manager(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    # EDITANDO OS DADOS DE UM USUÁRIO 
+    if request.method == 'PUT':
+        
+        nickname = request.data['user_nickname']
+        try:
+            updated_user = User.objects.get(pk=nickname)
+        except:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        print(request.data)
+        
+        serializer = UserSerializer(updated_user, data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_202_ACCEPTED)
+    
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
     
         
     

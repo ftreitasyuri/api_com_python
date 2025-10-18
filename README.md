@@ -35,3 +35,8 @@
 # Update user
 # http://127.0.0.1:8000/api/
 
+# Delete user
+# http://127.0.0.1:8000/api/data
+# {
+#    "user_nickname": "ftreitasyuri18"
+# }

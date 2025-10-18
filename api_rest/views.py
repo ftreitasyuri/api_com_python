@@ -46,7 +46,7 @@ def get_by_nick(request, nick):
 @api_view(['GET', 'POST', 'PUT', 'DELTE'])
 def user_manager(request):
      
-     if request.method == 'GET':
+    if request.method == 'GET':
          
         try:
             if request.GET['user']:
@@ -68,3 +68,17 @@ def user_manager(request):
 
         except: 
             return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+    if request.method == 'POST':
+        
+        new_user = request.data
+        
+        serializer = UserSerializer(data=new_user)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+    
+        
+    

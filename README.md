@@ -8,3 +8,15 @@
 
 # Para rodar as migrations
 # Comando python manage.py migrate
+
+# --------------------------------------------------------------------------
+# OBS: Para registrar uma model/tabela no painel, precisar criar o código em admin.py
+#      Necessário para usar o painel adm distribuindo pelo Django
+# Para criar super usuário
+
+# python manage.py createsuperuser
+
+# ---------------------------------------------------------------------------
+
+# Para rodar o servidor
+# python manage.py runserver
